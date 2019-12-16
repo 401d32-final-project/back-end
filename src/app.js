@@ -3,6 +3,7 @@
 const express = require ('express');
 const cors = require('cors');
 const morgan = require ('morgan');
+const fetchNewsFeed = require ('./routes/newsapi.js');
 
 
 const app = express();
@@ -11,6 +12,10 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+
+// connects to our news router module
+app.use(fetchNewsFeed);
 
 
 app.get('/', (request, response) => {
