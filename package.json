@@ -21,14 +21,20 @@
   },
   "homepage": "https://github.com/401d32-final-project/back-end#readme",
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
     "jest": "^24.9.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.4.0",
+    "mongodb-memory-server": "^6.0.2",
+    "mongoose": "^5.8.1",
     "morgan": "^1.9.1",
     "newsapi": "^2.4.0",
-    "superagent": "^5.1.2"
+    "superagent": "^5.1.2",
+    "supertest": "^4.0.2"
   }
 }

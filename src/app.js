@@ -4,6 +4,7 @@ const express = require ('express');
 const cors = require('cors');
 const morgan = require ('morgan');
 const fetchNewsFeed = require ('./routes/newsapi.js');
+const usersRouter = require ('./routes/user.js');
 
 
 const app = express();
@@ -16,9 +17,11 @@ app.use(express.urlencoded({extended: true}));
 
 // connects to our news router module
 app.use(fetchNewsFeed);
+app.use(usersRouter);
 
 
 app.get('/', (request, response) => {
+  console.log('here');
   response.send('you have hit the slash route');
 });
 
