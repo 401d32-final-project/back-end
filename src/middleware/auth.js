@@ -1,8 +1,8 @@
 'use strict';
 
-const User = require ('../user/user-model.js');
+const User = require('../user/user-model.js');
 
-module.exports = (capability) => (req, res, next) => {
+module.exports = () => (req, res, next) => {
   try {
     let [authType, authString] = req.headers.authorization.split(/\s+/);
 
@@ -36,7 +36,8 @@ module.exports = (capability) => (req, res, next) => {
   }
 
   function _authenticate(user){
-    if (user && (!capability || user.can(capability))){
+    // if (user && (!capability || user.can(capability))){
+    if (user) {
       req.user = user;
       req.token = user.generateToken();
       next();

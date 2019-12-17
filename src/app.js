@@ -16,14 +16,22 @@ app.use(express.urlencoded({extended: true}));
 
 
 // connects to our news router module
-app.use(fetchNewsFeed);
+// app.use(fetchNewsFeed);
 app.use(usersRouter);
 
 
-app.get('/', (request, response) => {
-  console.log('here');
-  response.send('you have hit the slash route');
-});
+// app.get('/', (request, response) => {
+//   console.log('here');
+//   response.send('you have hit the slash route');
+// });
+
+app.get('/', fetchNewsFeed);
+
+// function handleNews(req, res){
+//   fetchNewsFeed(req.body.search){
+
+//   }
+// }
 
 
 module.exports = {

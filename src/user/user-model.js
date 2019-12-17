@@ -4,31 +4,21 @@ const bcrypt = require ('bcrypt');
 const mongoose = require ('mongoose');
 const jwt = require ('jsonwebtoken');
 
-
-
-
-
-
-// app.post('./signup'){
-
-// }
-
-// app.post('./signin'){
-  
-// }
-
 const user = mongoose.Schema({
   username: { type: String, required: true, unique: true},
   password: { type: String, required: true},
   email: { type: String, required: true},
-  role: {type: String, default: 'user', enum: ['admin', 'editor', 'user']},
+  
+
+
+  // role: {type: String, default: 'user', enum: ['admin', 'editor', 'user']},
 });
 
-const capabilities = {
-  admin: ['create', 'read', 'update', 'delete'],
-  editor: ['create', 'read'],
-  user: ['read'],
-};
+// const capabilities = {
+//   admin: ['create', 'read', 'update', 'delete'],
+//   editor: ['create', 'read'],
+//   user: ['read'],
+// };
 
 user.pre('save', async function (){
   if (this.isModified('password')){
@@ -36,8 +26,10 @@ user.pre('save', async function (){
   }
 });
 
-user.authenticateToken = function (token){
-  let parsedToken = jwt.verify(token, process.send.SECRET);
+user.statics.authenticateToken = function (token){
+  console.log('here');
+  let parsedToken = jwt.verify(token, process.env.SECRET);
+  console.log(parsedToken);
   return this.findOne({ _id:parsedToken.id});
 };
 
@@ -53,14 +45,14 @@ user.methods.comparePassword = function (password){
     .then(valid => valid ? this : null);
 };
 
-user.methods.can = function (capability){
-  return capabilities[this.role].includes(capability);
-};
+// user.methods.can = function (capability){
+//   return capabilities[this.role].includes(capability);
+// };
 
 user.methods.generateToken = function (){
   let tokenData = {
     id: this._id,
-    role: this.role,
+    // role: this.role,
   };
   return jwt.sign(tokenData, process.env.SECRET);
 };

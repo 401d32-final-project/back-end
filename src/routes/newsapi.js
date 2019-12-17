@@ -7,26 +7,34 @@ const superagent = require ('superagent');
  * @returns {} -
  */
 
-class Headlines {
-  constructor(){
-    
-  }
+// class Headlines {
+//   constructor(){
+//     this.source = req.body
+//   }
+// }
+
+async function fetchNewsFeed (request, response) {
+  const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API}`;
+  
+  const newsData = await superagent.get(url);
+  console.log(newsData);
+  response.send(newsData);
 }
 
-
-
-const fetchNewsFeed = () => {
-  //  const data = {
-  //    news_api: process.env.NEWS_API
-  //   };
-  const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API}`;
-  return superagent.get(url)
+// const fetchNewsFeed = () => {
+//   //  const data = {
+//   //    news_api: process.env.NEWS_API
+//   //   };
+//   // const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API}`;
+//   let newsArray = [];
+//   return superagent.get(url)
     
-    .then(response =>{
-      return response.body;
-    })
-    .catch(error => console.error('error', error));
-};
+//     .then(response =>{
+//       newsArray.push(response.body);
+//       return newsArray;
+//     })
+//     .catch(error => console.error('error', error));
+// };
 
 
  
