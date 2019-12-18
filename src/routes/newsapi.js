@@ -13,8 +13,26 @@ const superagent = require ('superagent');
 //   }
 // }
 
-async function fetchNewsFeed (request, response) {
+async function fetchHeadlines (request, response) {
   const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API}`;
+  
+  const newsData = await superagent.get(url);
+  console.log(newsData);
+  response.send(newsData);
+}
+
+
+async function fetchSearch (request, response) {
+  const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${process.env.NEWS_API}`;
+  
+  const newsData = await superagent.get(url);
+  console.log(newsData);
+  response.send(newsData);
+}
+
+// maybe use a dropdown of sources ids on the front end
+async function fetchSources (request, response) {
+  const url = `https://newsapi.org/v2/sources?apiKey=${process.env.NEWS_API}`;
   
   const newsData = await superagent.get(url);
   console.log(newsData);
@@ -47,4 +65,6 @@ async function fetchNewsFeed (request, response) {
 // })
 
 
-module.exports = fetchNewsFeed;
+module.exports = fetchHeadlines;
+module.exports = fetchSearch;
+module.exports = fetchSources;

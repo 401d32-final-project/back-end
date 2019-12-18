@@ -3,7 +3,12 @@
 const express = require ('express');
 const cors = require('cors');
 const morgan = require ('morgan');
-const fetchNewsFeed = require ('./routes/newsapi.js');
+
+const fetchHeadlines = require ('./routes/newsapi.js');
+const fetchSearch = require ('./routes/newsapi.js');
+const fetchSources = require ('./routes/newsapi.js');
+
+
 const usersRouter = require ('./routes/user.js');
 
 
@@ -16,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 // connects to our news router module
-// app.use(fetchNewsFeed);
+// app.use(fetchHeadlines);
 app.use(usersRouter);
 
 
@@ -25,10 +30,14 @@ app.use(usersRouter);
 //   response.send('you have hit the slash route');
 // });
 
-app.get('/', fetchNewsFeed);
+app.get('/headlines', fetchHeadlines);
+app.get('/search', fetchSearch);
+app.get('/sources', fetchSources);
+
+
 
 // function handleNews(req, res){
-//   fetchNewsFeed(req.body.search){
+//   fetchHeadlines(req.body.search){
 
 //   }
 // }
