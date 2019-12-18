@@ -17,17 +17,18 @@ async function fetchHeadlines (request, response) {
   const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API}`;
   
   const newsData = await superagent.get(url);
-  console.log(newsData);
-  response.send(newsData);
+  console.log(newsData.body.articles);
+  response.send(newsData.body.articles);
 }
 
 
 async function fetchSearch (request, response) {
+//  PROOF OF LIFE QUERY
+  // const query = 'russia';
   const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${process.env.NEWS_API}`;
-  
   const newsData = await superagent.get(url);
-  console.log(newsData);
-  response.send(newsData);
+  console.log(newsData.body.articles);
+  response.send(newsData.body.articles);
 }
 
 // maybe use a dropdown of sources ids on the front end
@@ -35,8 +36,8 @@ async function fetchSources (request, response) {
   const url = `https://newsapi.org/v2/sources?apiKey=${process.env.NEWS_API}`;
   
   const newsData = await superagent.get(url);
-  console.log(newsData);
-  response.send(newsData);
+  console.log(newsData.body.sources);
+  response.send(newsData.body.sources);
 }
 
 // const fetchNewsFeed = () => {
@@ -65,6 +66,9 @@ async function fetchSources (request, response) {
 // })
 
 
-module.exports = fetchHeadlines;
-module.exports = fetchSearch;
-module.exports = fetchSources;
+
+module.exports = {
+  fetchSources,
+  fetchHeadlines,
+  fetchSearch,
+};
