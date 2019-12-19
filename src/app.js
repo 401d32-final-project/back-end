@@ -5,6 +5,7 @@ const cors = require('cors');
 const morgan = require ('morgan');
 
 const newsRoutes = require ('./routes/newsapi.js');
+const articleRoutes = require('./routes/article');
 
 
 
@@ -22,6 +23,7 @@ app.use(express.urlencoded({extended: true}));
 // connects to our news router module
 // app.use(fetchHeadlines);
 app.use(usersRouter);
+app.use(articleRoutes);
 
 
 // app.get('/', (request, response) => {
