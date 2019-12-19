@@ -15,11 +15,10 @@ router.get('/articles/:userId', (req, res, next) => {
 });
 
 // saves an article to a user
-router.post('/articles/:userId', (req, res, next) => {
-  const userId = req.params.userId;
-  saveArticle = new Article(req.body)
+router.post('/save-article', (req, res, next) => {
+  const saveArticle = new Article(req.body);
   saveArticle.save()
-  .then (article => res.send(article);
+    .then(article => res.status(201).send(article));
 });
 
 module.exports = router;
