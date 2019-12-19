@@ -33,6 +33,10 @@ app.get('/headlines', newsRoutes.fetchHeadlines);
 app.get('/search', newsRoutes.fetchSearch);
 app.get('/sources', newsRoutes.fetchSources);
 
+app.get('*', () => {
+  console.log('404');
+});
+
 
 
 // function handleNews(req, res){
