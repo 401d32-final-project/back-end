@@ -10,6 +10,7 @@ const auth = require ('../middleware/auth.js');
 const User = require ('../user/user-model.js');
 
 router.post('/signup', (req,res,next) => {
+  console.log('user body', req.body);
   let user = new User(req.body);
   user.save()
     .then((user) => {

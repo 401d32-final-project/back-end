@@ -16,6 +16,7 @@ router.get('/articles/:userId', (req, res, next) => {
 
 // saves an article to a user
 router.post('/save-article', (req, res, next) => {
+  console.log('save body', req.body);
   const saveArticle = new Article(req.body);
   saveArticle.save()
     .then(article => res.status(201).send(article));

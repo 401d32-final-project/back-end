@@ -6,9 +6,6 @@ const morgan = require ('morgan');
 
 const newsRoutes = require ('./routes/newsapi.js');
 const articleRoutes = require('./routes/article');
-
-
-
 const usersRouter = require ('./routes/user.js');
 
 
