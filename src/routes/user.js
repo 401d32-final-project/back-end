@@ -16,8 +16,9 @@ router.post('/signup', (req,res,next) => {
       req.token = user.generateToken();
       req.user = user;
       res.set('token', req.token);
+      res.set('userId', user._id);
       res.cookie('auth', req.token);
-      res.send(req.token);
+      res.send();
     })
     .catch(next);
 });

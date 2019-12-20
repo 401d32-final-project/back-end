@@ -49,7 +49,6 @@ user.methods.comparePassword = function (password){
 user.methods.generateToken = function (){
   let tokenData = {
     id: this._id,
-    // role: this.role,
   };
   return jwt.sign(tokenData, process.env.SECRET);
 };

@@ -4,6 +4,7 @@ const User = require('../user/user-model.js');
 
 module.exports = () => (req, res, next) => {
   try {
+    console.log('here', req.headers);
     let [authType, authString] = req.headers.authorization.split(/\s+/);
 
     switch (authType.toLowerCase()){
@@ -19,7 +20,7 @@ module.exports = () => (req, res, next) => {
   }
 
   function _authBasic(str){
-    let base64Buffer = Buffer.from (str, 'base64');
+    let base64Buffer = Buffer.from(str, 'base64');
     let bufferString = base64Buffer.toString();
     let [username, password] = bufferString.split(':');
     let auth = { username, password};
@@ -37,6 +38,7 @@ module.exports = () => (req, res, next) => {
 
   function _authenticate(user){
     // if (user && (!capability || user.can(capability))){
+    console.log(user);
     if (user) {
       req.user = user;
       req.token = user.generateToken();
